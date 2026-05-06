@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanzi &amp; Qt HMI 宸ュ叿绠?- 宓屽叆寮?HMI 宸ョ▼甯堢殑鏁堢巼鍒╁櫒</title>
-    <meta name="description" content="涓撲负 Kanzi 鍜?Qt HMI 宸ョ▼甯堟墦閫犵殑鏁堢巼宸ュ叿闆嗭細PLC鍙橀噺鑷姩鏄犲皠銆丮odbus鍦板潃鎵归噺璁＄畻銆侀厤鏂规暟鎹簰杞€佹爣绛炬壒閲忓鍏ュ鍑恒€傝妭鐪佷綘鐨勬瘡涓€鍒嗛挓銆?>
+    <title>Kanzi &amp; Qt HMI 工具箱 - 嵌入式 HMI 工程师的效率利器</title>
+    <meta name="description" content="专为 Kanzi 和 Qt HMI 工程师打造的效率工具集：PLC变量自动映射、Modbus地址批量计算、配方数据互转、标签批量导入导出。节省你的每一分钟。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <style>
         :root {
@@ -25,7 +25,6 @@
         }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-        /* Hero */
         .hero {
             padding: 80px 0 60px;
             text-align: center;
@@ -57,7 +56,6 @@
             margin-bottom: 24px;
         }
 
-        /* Products */
         .products { padding: 60px 0; }
         .section-title {
             text-align: center;
@@ -124,7 +122,7 @@
             color: var(--muted);
         }
         .card .features li::before {
-            content: "鉁?";
+            content: "✓ ";
             color: var(--green);
         }
         .btn {
@@ -157,7 +155,6 @@
             background: rgba(56,189,248,0.1);
         }
 
-        /* How it works */
         .how-it-works { padding: 60px 0; background: #0a0f1e; }
         .steps {
             display: grid;
@@ -184,7 +181,6 @@
         .step h4 { margin-bottom: 8px; }
         .step p { color: var(--muted); font-size: 0.9rem; }
 
-        /* FAQ */
         .faq { padding: 60px 0; }
         .faq-item {
             border-bottom: 1px solid rgba(148,163,184,0.1);
@@ -202,7 +198,6 @@
         }
         .faq-item.active p { display: block; }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 40px 0;
@@ -221,185 +216,177 @@
 </head>
 <body>
 
-<!-- Hero -->
 <section class="hero">
     <div class="container">
-        <div class="tagline">馃洜锔?Kanzi &amp; Qt HMI 宸ョ▼甯堜笓灞?/div>
-        <h1>璁?HMI 寮€鍙戞晥鐜囩炕鍊?/h1>
-        <p>涓撲负 Kanzi / Qt / 宓屽叆寮?HMI 宸ヤ綔娴佽璁＄殑鏁堢巼宸ュ叿 鈥斺€?鍙橀噺鏄犲皠銆佸湴鍧€璁＄畻銆侀厤鏂逛簰杞€佹爣绛剧鐞嗭紝涓€鏉￠緳鎼炲畾銆?/p>
-        <a href="#products" class="btn btn-primary" style="width:auto;padding:14px 48px;">鏌ョ湅宸ュ叿 鈫?/a>
+        <div class="tagline">🛠️ Kanzi &amp; Qt HMI 工程师专属</div>
+        <h1>让 HMI 开发效率翻倍</h1>
+        <p>专为 Kanzi / Qt / 嵌入式 HMI 工作流设计的效率工具 —— 变量映射、地址计算、配方互转、标签管理，一条龙搞定。</p>
+        <a href="#products" class="btn btn-primary" style="width:auto;padding:14px 48px;">查看工具 →</a>
     </div>
 </section>
 
-<!-- Products -->
 <section class="products" id="products">
     <div class="container">
-        <h2 class="section-title">绮鹃€夊伐鍏?/h2>
-        <p class="section-sub">涓€娆¤喘涔帮紝姘镐箙浣跨敤銆備粯娆惧悗鑷姩鍙戦€佷笅杞介摼鎺ャ€?/p>
+        <h2 class="section-title">精选工具</h2>
+        <p class="section-sub">一次购买，永久使用。付款后自动发送下载链接。</p>
         <div class="grid">
             <div class="card">
-                <span class="card-icon">馃搳</span>
-                <h3>PLC 鍙橀噺鑷姩鏄犲皠琛?/h3>
-                <p>杈撳叆 PLC 鍙橀噺鍚嶏紝鑷姩鐢熸垚 Kanzi/Qt 宸ョ▼涓殑鏍囩鍦板潃鏄犲皠琛ㄣ€?/p>
+                <span class="card-icon">📊</span>
+                <h3>PLC 变量自动映射表</h3>
+                <p>输入 PLC 变量名，自动生成 Kanzi/Qt 工程中的标签地址映射表。</p>
                 <ul class="features">
-                    <li>鏀寔 Siemens / Mitsubishi / Omron 绛?20+ PLC</li>
-                    <li>鑷姩鐢熸垚 Kanzi State Manager 鍏煎鏍煎紡</li>
-                    <li>鏀寔 Qt QML property binding 妯℃澘</li>
-                    <li>鑷姩鍋忕Щ + 鏁版嵁绫诲瀷鏍￠獙</li>
-                    <li>涓€閿鍑?Excel / CSV / JSON / PDF</li>
+                    <li>支持 Siemens / Mitsubishi / Omron 等 20+ PLC</li>
+                    <li>自动生成 Kanzi State Manager 兼容格式</li>
+                    <li>支持 Qt QML property binding 模板</li>
+                    <li>自动偏移 + 数据类型校验</li>
+                    <li>一键导出 Excel / CSV / JSON / PDF</li>
                 </ul>
-                <div class="price">楼99 <span>/ 姘镐箙</span></div>
-                <a href="#" class="btn btn-primary" style="margin-top:16px;">绔嬪嵆璐拱</a>
+                <div class="price">¥99 <span>/ 永久</span></div>
+                <a href="#" class="btn btn-primary" style="margin-top:16px;">前往面包多购买 →</a>
             </div>
             <div class="card">
-                <span class="card-icon">馃敘</span>
-                <h3>Modbus 鍦板潃鎵归噺璁＄畻鍣?/h3>
-                <p>杈撳叆璧峰鍦板潃锛屼竴閿敓鎴愬叏閮ㄥ亸绉诲湴鍧€琛紝鏀寔 Kanzi 鏁版嵁婧愮粦瀹氥€?/p>
+                <span class="card-icon">🔢</span>
+                <h3>Modbus 地址批量计算器</h3>
+                <p>输入起始地址，一键生成全部偏移地址表，支持 Kanzi 数据源绑定。</p>
                 <ul class="features">
-                    <li>485 / 233 / TCP 鍦板潃鍏ㄦ敮鎸?/li>
-                    <li>鍗佽繘鍒?鈫?鍗佸叚杩涘埗浜掕浆</li>
-                    <li>鎵归噺鐢熸垚 D/I/AI/AQ 鍦板潃</li>
-                    <li>鍙緭鍑?Kanzi Data Source 閰嶇疆鏍煎紡</li>
-                    <li>鍙畾鍒惰緭鍑烘ā鏉?/li>
+                    <li>485 / 233 / TCP 地址全支持</li>
+                    <li>十进制 ↔ 十六进制互转</li>
+                    <li>批量生成 D/I/AI/AQ 地址</li>
+                    <li>可输出 Kanzi Data Source 配置格式</li>
+                    <li>可定制输出模板</li>
                 </ul>
-                <div class="price">楼69 <span>/ 姘镐箙</span></div>
-                <a href="#" class="btn btn-primary" style="margin-top:16px;">绔嬪嵆璐拱</a>
+                <div class="price">¥69 <span>/ 永久</span></div>
+                <a href="#" class="btn btn-primary" style="margin-top:16px;">前往面包多购买 →</a>
             </div>
             <div class="card">
-                <span class="card-icon">馃攧</span>
-                <h3>閰嶆柟鏁版嵁 Excel 鈫?HMI 浜掕浆</h3>
-                <p>閰嶆柟鏁版嵁鍦?Excel 鍜?Kanzi/Qt HMI 鏍煎紡涔嬮棿鍙屽悜杞崲銆?/p>
+                <span class="card-icon">🔄</span>
+                <h3>配方数据 Excel ↔ HMI 互转</h3>
+                <p>配方数据在 Excel 和 Kanzi/Qt HMI 格式之间双向转换。</p>
                 <ul class="features">
-                    <li>鏀寔 Kanzi Studio 閰嶆柟鏁版嵁鏍煎紡瀵煎叆瀵煎嚭</li>
-                    <li>鏀寔 Qt QML 妯″瀷鏁版嵁鏍煎紡</li>
-                    <li>鎵归噺澶勭悊鏁板崄涓厤鏂?/li>
-                    <li>鏁版嵁鏍￠獙 + 寮傚父鏍囪</li>
-                    <li>鍙鍖栨搷浣滅晫闈?/li>
+                    <li>支持 Kanzi Studio 配方数据格式导入导出</li>
+                    <li>支持 Qt QML 模型数据格式</li>
+                    <li>批量处理数十个配方</li>
+                    <li>数据校验 + 异常标记</li>
+                    <li>可视化操作界面</li>
                 </ul>
-                <div class="price">楼129 <span>/ 姘镐箙</span></div>
-                <a href="#" class="btn btn-primary" style="margin-top:16px;">绔嬪嵆璐拱</a>
+                <div class="price">¥129 <span>/ 永久</span></div>
+                <a href="#" class="btn btn-primary" style="margin-top:16px;">前往面包多购买 →</a>
             </div>
             <div class="card">
-                <span class="card-icon">馃彿锔?/span>
-                <h3>鏍囩鎵归噺瀵煎叆/瀵煎嚭宸ュ叿</h3>
-                <p>浠?PLC 宸ョ▼鏂囦欢鎵归噺鎻愬彇鏍囩锛岃嚜鍔ㄥ鍏?Kanzi/Qt HMI 宸ョ▼銆?/p>
+                <span class="card-icon">🏷️</span>
+                <h3>标签批量导入/导出工具</h3>
+                <p>从 PLC 工程文件批量提取标签，自动导入 Kanzi/Qt HMI 工程。</p>
                 <ul class="features">
-                    <li>鏀寔瑗块棬瀛?TIA / 涓夎彵 GX Works / Omron CX-Programmer</li>
-                    <li>鑷姩鐢熸垚 Kanzi Prefab 缁戝畾鍏冩暟鎹?/li>
-                    <li>Qt QML 鈫?C++ 鍓嶅悗绔爣绛捐嚜鍔ㄥ榻?/li>
-                    <li>鎵归噺閲嶅懡鍚?/ 褰掔被 / 宸垎瀵规瘮</li>
-                    <li>涓€閿鍏?Kanzi Studio / Qt Creator</li>
+                    <li>支持西门子 TIA / 三菱 GX Works / Omron CX-Programmer</li>
+                    <li>自动生成 Kanzi Prefab 绑定元数据</li>
+                    <li>Qt QML → C++ 前后端标签自动对齐</li>
+                    <li>批量重命名 / 归类 / 差分对比</li>
+                    <li>一键导入 Kanzi Studio / Qt Creator</li>
                 </ul>
-                <div class="price">楼149 <span>/ 姘镐箙</span></div>
-                <a href="#" class="btn btn-primary" style="margin-top:16px;">绔嬪嵆璐拱</a>
+                <div class="price">¥149 <span>/ 永久</span></div>
+                <a href="#" class="btn btn-primary" style="margin-top:16px;">前往面包多购买 →</a>
             </div>
             <div class="card">
-                <span class="card-icon">馃搵</span>
-                <h3>IO 鐐硅〃鑷姩鐢熸垚鎶ュ憡</h3>
-                <p>浠庡伐绋嬫枃浠惰嚜鍔ㄦ彁鍙?IO 鐐硅〃锛岀敓鎴愪笓涓氫氦浠樻枃妗ｃ€?/p>
+                <span class="card-icon">📋</span>
+                <h3>IO 点表自动生成报告</h3>
+                <p>从工程文件自动提取 IO 点表，生成专业交付文档。</p>
                 <ul class="features">
-                    <li>DI / DO / AI / AO 鑷姩鍒嗙被</li>
-                    <li>鍦板潃鍗犵敤缁熻 + 浣欓噺鍒嗘瀽</li>
-                    <li>鍙鍑?Word / PDF 浜や粯鏂囨。</li>
-                    <li>鍚帴绾垮浘妯℃澘</li>
+                    <li>DI / DO / AI / AO 自动分类</li>
+                    <li>地址占用统计 + 余量分析</li>
+                    <li>可导出 Word / PDF 交付文档</li>
+                    <li>含接线图模板</li>
                 </ul>
-                <div class="price">楼79 <span>/ 姘镐箙</span></div>
-                <a href="#" class="btn btn-primary" style="margin-top:16px;">绔嬪嵆璐拱</a>
+                <div class="price">¥79 <span>/ 永久</span></div>
+                <a href="#" class="btn btn-primary" style="margin-top:16px;">前往面包多购买 →</a>
             </div>
             <div class="card">
-                <span class="card-icon">馃О</span>
-                <h3>鍏ㄥ宸ュ叿鍖咃紙鎺ㄨ崘锛?/h3>
-                <p>浠ヤ笂鍏ㄩ儴宸ュ叿鎵撳寘锛岀渷 40%锛屼竴姝ュ埌浣嶃€?/p>
+                <span class="card-icon">🧰</span>
+                <h3>全套工具包（推荐）</h3>
+                <p>以上全部工具打包，省 40%，一步到位。</p>
                 <ul class="features">
-                    <li>鍏ㄩ儴 5 涓伐鍏锋案涔呬娇鐢?/li>
-                    <li>缁堣韩鍏嶈垂鏇存柊</li>
-                    <li>浼樺厛鎶€鏈敮鎸?/li>
-                    <li>鏂板伐鍏蜂笂绾胯嚜鍔ㄨ幏鍙?/li>
+                    <li>全部 5 个工具永久使用</li>
+                    <li>终身免费更新</li>
+                    <li>优先技术支持</li>
+                    <li>新工具上线自动获取</li>
                 </ul>
-                <div class="price">楼299 <span>/ 姘镐箙锛堝師浠?楼526锛?/span></div>
-                <a href="#" class="btn btn-primary" style="margin-top:16px;">绔嬪嵆璐拱</a>
+                <div class="price">¥299 <span>/ 永久（原价 ¥526）</span></div>
+                <a href="#" class="btn btn-primary" style="margin-top:16px;">前往面包多购买 →</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- How it works -->
 <section class="how-it-works">
     <div class="container">
-        <h2 class="section-title">涓夋涓婃墜</h2>
-        <p class="section-sub">浠庝粯瀹屾鍒扮敤涓婂伐鍏凤紝涓嶅埌 5 鍒嗛挓銆?/p>
+        <h2 class="section-title">三步上手</h2>
+        <p class="section-sub">从付完款到用上工具，不到 5 分钟。</p>
         <div class="steps">
             <div class="step">
                 <div class="step-num">1</div>
-                <h4>浠樻涓嬪崟</h4>
-                <p>鏀粯瀹?/ 寰俊鏀粯锛屼竴閿笅鍗?/p>
+                <h4>前往面包多下单</h4>
+                <p>点击购买按钮跳转面包多，支付宝/微信支付</p>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
-                <h4>鑷姩鑾峰彇</h4>
-                <p>浠樻鍚庤嚜鍔ㄥ彂閫佷笅杞介摼鎺ュ埌閭</p>
+                <h4>自动获取下载</h4>
+                <p>付款后面包多自动发送下载链接到邮箱</p>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
-                <h4>寮€绠卞嵆鐢?/h4>
-                <p>瑙ｅ帇鍗崇敤锛岄檮璇︾粏浣跨敤鏁欑▼瑙嗛</p>
+                <h4>开箱即用</h4>
+                <p>解压即用，附详细使用教程视频</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ -->
 <section class="faq">
     <div class="container">
-        <h2 class="section-title">甯歌闂</h2>
-        <p class="section-sub" style="margin-bottom:32px;">浣犳兂鐭ラ亾鐨勯兘鍦ㄨ繖閲?/p>
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-sub" style="margin-bottom:32px;">你想知道的都在这里</p>
         <div class="faq-item active">
-            <h4>馃搶 杩欎簺宸ュ叿鏀寔鍝簺 HMI 骞冲彴锛?/h4>
-            <p>娣卞害閫傞厤 <strong>Kanzi</strong>锛圞anzi Studio / Kanzi Maps / State Manager 鏁版嵁缁戝畾锛夊拰 <strong>Qt</strong>锛圦t Quick / QML / Widgets锛夊伐浣滄祦銆傚悓鏃朵篃鍏煎濞佺憾閫氥€佹槅浠戦€氭€併€佽タ闂ㄥ瓙 WinCC銆佷笁鑿?GOT銆丳roface 绛変紶缁?HMI銆傝緭鍑烘牸寮忓彲鐏垫椿閰嶇疆銆?/p>
+            <h4>📌 这些工具支持哪些 HMI 平台？</h4>
+            <p>深度适配 <strong>Kanzi</strong>（Kanzi Studio / Kanzi Maps / State Manager 数据绑定）和 <strong>Qt</strong>（Qt Quick / QML / Widgets）工作流。同时也兼容威纶通、昆仑通态、西门子 WinCC、三菱 GOT、Proface 等传统 HMI。输出格式可灵活配置。</p>
         </div>
         <div class="faq-item">
-            <h4>馃搶 璐拱鍚庤兘閫€娆惧悧锛?/h4>
-            <p>鏁板瓧浜у搧涓€缁忓彂閫侊紝涓嶆敮鎸侀€€娆俱€傝喘涔板墠鍙仈绯诲鏈嶈幏鍙栬瘯鐢ㄧ増浣撻獙銆?/p>
+            <h4>📌 购买后能退款吗？</h4>
+            <p>数字产品一经发送，不支持退款。购买前可联系客服获取试用版体验。</p>
         </div>
         <div class="faq-item">
-            <h4>馃搶 浼氭洿鏂板悧锛熻涓嶈棰濆浠樿垂锛?/h4>
-            <p>鍏ㄩ儴宸ュ叿姘镐箙浣跨敤锛岀粓韬厤璐规洿鏂般€傚伐鍏峰寘鐢ㄦ埛浜彈浼樺厛鏂板姛鑳芥帹閫併€?/p>
+            <h4>📌 会更新吗？要不要额外付费？</h4>
+            <p>全部工具永久使用，终身免费更新。工具包用户享受优先新功能推送。</p>
         </div>
         <div class="faq-item">
-            <h4>馃搶 鐪嬩笉鎳傛枃妗ｆ€庝箞鍔烇紵</h4>
-            <p>姣忎釜宸ュ叿閮介檮甯﹁缁嗚棰戞暀绋?+ PDF 鏂囨。銆傛湁鐤戦棶鍙洿鎺ヨ仈绯诲井淇″鏈嶃€?/p>
+            <h4>📌 看不懂文档怎么办？</h4>
+            <p>每个工具都附带详细视频教程 + PDF 文档。有疑问可直接联系微信客服。</p>
         </div>
         <div class="faq-item">
-            <h4>馃搶 鍙互瀹氬埗涓撳睘宸ュ叿鍚楋紵</h4>
-            <p>鍙互銆傝鑱旂郴瀹㈡湇鎻愪緵闇€姹傦紝鏍规嵁澶嶆潅搴﹀畾浠枫€傚伐鍏峰寘鐢ㄦ埛浜?9 鎶樺畾鍒朵紭鎯犮€?/p>
+            <h4>📌 可以定制专属工具吗？</h4>
+            <p>可以。请联系客服提供需求，根据复杂度定价。工具包用户享 9 折定制优惠。</p>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
 <footer>
     <div class="container">
-        <p>漏 2026 Kanzi &amp; Qt HMI 宸ュ叿绠?路 涓撲负宓屽叆寮?HMI 宸ョ▼甯堟墦閫?路 <a href="mailto:hi@hmitools.com">鑱旂郴瀹㈡湇</a></p>
+        <p>&copy; 2026 Kanzi &amp; Qt HMI 工具箱 · 专为嵌入式 HMI 工程师打造 · <a href="mailto:hi@hmitools.com">联系客服</a></p>
     </div>
 </footer>
 
 <script>
-    // FAQ toggle
     document.querySelectorAll('.faq-item h4').forEach(el => {
         el.addEventListener('click', () => {
             el.parentElement.classList.toggle('active');
         });
     });
-    // 涓存椂璐拱鎸夐挳 - 妯℃嫙鑷姩璺宠浆
     document.querySelectorAll('.btn-primary').forEach(btn => {
         btn.addEventListener('click', (e) => {
             if(btn.getAttribute('href') === '#') {
                 e.preventDefault();
-                alert('馃挕 璐拱鍔熻兘寰呮帴鍏ユ敮浠樸€俓n\n鎺ュ叆鍚庤嚜鍔ㄨ烦杞敮浠樺疂/寰俊鎵爜椤?);
+                alert('🛒 请前往面包多购买此工具');
             }
         });
     });
 </script>
 </body>
 </html>
-
