@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modbus 地址批量计算器 · 免费在线版</title>
+<meta name="description" content="Modbus 地址批量计算器 - 输入起始地址，一键生成完整偏移地址表。支持 485/TCP，十进制/十六进制互转，含设备预设。100% 免费在线使用。">
+<style>
+:root {
+    --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --accent2: #818cf8;
+    --text: #f1f5f9; --muted: #94a3b8; --green: #34d399; --green-bg: rgba(52,211,153,0.1);
+    --border: rgba(148,163,184,0.15); --input-bg: #0f172a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg); color: var(--text); min-height: 100vh;
+}
+.container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+/* Header */
+.header {
+    padding: 32px 0 24px; text-align: center;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+.header h1 {
+    font-size: 1.6rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.header p { color: var(--muted); font-size: 0.88rem; margin-top: 6px; }
+.free-badge {
+    display: inline-block; margin-top: 10px;
+    background: var(--green-bg); border: 1px solid rgba(52,211,153,0.3);
+    color: var(--green); padding: 4px 14px; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 600;
+}
+
+/* Controls */
+.controls {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px;
+    margin: 24px 0;
+}
+.control-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+.control-group { display: flex; flex-direction: column; gap: 6px; }
+.control-group label {
+    font-size: 0.8rem; color: var(--muted); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.3px;
+}
+.control-group input, .control-group select {
+    background: var(--input-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px; color: var(--text);
+    font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+}
+.control-group input:focus, .control-group select:focus {
+    border-color: var(--accent);
+}
+.control-group input[type=number] { -moz-appearance: textfield; }
+.control-group input::-webkit-outer-spin-button,
+.control-group input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+/* Quick buttons */
+.quick-btns {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+}
+.quick-btn {
+    padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); cursor: pointer;
+    font-size: 0.78rem; transition: all 0.2s;
+}
+.quick-btn:hover {
+    border-color: var(--accent); color: var(--accent); background: rgba(56,189,248,0.05);
+}
+.quick-btn.active {
+    border-color: var(--accent); color: var(--text); background: rgba(56,189,248,0.1);
+    font-weight: 600;
+}
+
+/* Results */
+.results { margin-bottom: 32px; }
+.result-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px; flex-wrap: wrap; gap: 10px;
+}
+.result-header h2 { font-size: 1rem; font-weight: 600; }
+.result-stats {
+    display: flex; gap: 16px; font-size: 0.82rem; color: var(--muted);
+}
+.result-stats span { display: flex; align-items: center; gap: 4px; }
+.result-stats strong { color: var(--accent); }
+
+/* Action buttons */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.action-btn {
+    padding: 7px 16px; border-radius: 6px; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); cursor: pointer;
+    font-size: 0.78rem; transition: all 0.2s;
+    display: flex; align-items: center; gap: 5px;
+}
+.action-btn:hover { border-color: var(--accent); color: var(--accent); }
+.action-btn.primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none; color: #0f172a; font-weight: 600;
+}
+.action-btn.primary:hover { opacity: 0.9; }
+
+/* Table */
+.table-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+}
+table { width: 100%; border-collapse: collapse; }
+thead th {
+    background: #0f172a; padding: 11px 14px;
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.3px;
+    color: var(--muted); font-weight: 600; text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+tbody td {
+    padding: 8px 14px; font-size: 0.85rem; border-bottom: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) td { background: rgba(15,23,42,0.4); }
+tbody tr:hover td { background: rgba(56,189,248,0.05); }
+td:first-child { color: var(--muted); width: 40px; }
+td:nth-child(2) { color: var(--accent); font-weight: 600; }
+td:nth-child(3), td:nth-child(4) { color: var(--text); }
+td.copy-cell { cursor: pointer; }
+td.copy-cell:hover { color: var(--accent); }
+
+/* Device presets */
+.preset-card {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 6px;
+    background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.15);
+    font-size: 0.78rem; cursor: pointer; transition: all 0.2s;
+}
+.preset-card:hover { background: rgba(56,189,248,0.1); border-color: var(--accent); }
+.preset-card.active {
+    background: rgba(56,189,248,0.15); border-color: var(--accent); color: var(--accent); font-weight: 600;
+}
+
+/* Toast */
+.toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--green); color: #0f172a; padding: 10px 24px;
+    border-radius: 10px; font-size: 0.85rem; font-weight: 600;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    z-index: 100;
+}
+.toast.show { opacity: 1; }
+
+/* Footer */
+.footer {
+    text-align: center; padding: 24px 0 32px;
+    color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border);
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+@media (max-width: 600px) {
+    .control-grid { grid-template-columns: 1fr 1fr; }
+    .result-header { flex-direction: column; align-items: flex-start; }
+    .result-stats { font-size: 0.75rem; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <span class="free-badge">完全免费 · 在线使用</span>
+        <h1>Modbus 地址批量计算器</h1>
+        <p>输入起始地址和数量，一键生成全部偏移地址表。无需安装，浏览器直接使用。</p>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- Controls -->
+<div class="controls">
+    <div class="control-grid">
+        <div class="control-group">
+            <label>起始地址</label>
+            <input type="number" id="startAddr" value="1" min="0" max="65535">
+        </div>
+        <div class="control-group">
+            <label>寄存器数量</label>
+            <input type="number" id="count" value="20" min="1" max="1000">
+        </div>
+        <div class="control-group">
+            <label>寄存器类型</label>
+            <select id="regType">
+                <option value="0x">0x — 数字量输出 (Coil)</option>
+                <option value="1x">1x — 数字量输入 (Contact)</option>
+                <option value="3x" selected>3x — 输入寄存器 (Input Register)</option>
+                <option value="4x">4x — 保持寄存器 (Holding Register)</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label>数据格式</label>
+            <select id="dataFormat">
+                <option value="INT16" selected>INT16 (16-bit signed)</option>
+                <option value="UINT16">UINT16 (16-bit unsigned)</option>
+                <option value="INT32">INT32 (32-bit, 2 registers)</option>
+                <option value="FLOAT">FLOAT (32-bit, 2 registers)</option>
+                <option value="BOOL">BOOL (1-bit)</option>
+            </select>
+        </div>
+    </div>
+
+    <div style="margin-top:16px;">
+        <label style="font-size:0.8rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.3px;display:block;margin-bottom:8px;">设备预设</label>
+        <div class="quick-btns" id="devicePresets">
+            <span class="preset-card" data-start="1" data-type="4x">Delta DVP</span>
+            <span class="preset-card" data-start="40001" data-type="4x">Siemens S7</span>
+            <span class="preset-card active" data-start="0" data-type="3x">Mitsubishi FX</span>
+            <span class="preset-card" data-start="1" data-type="4x">ABB ACS</span>
+            <span class="preset-card" data-start="1" data-type="0x">自定义</span>
+        </div>
+    </div>
+
+    <div class="quick-btns" style="margin-top:12px;">
+        <span class="quick-btn" data-count="10">10</span>
+        <span class="quick-btn active" data-count="20">20</span>
+        <span class="quick-btn" data-count="50">50</span>
+        <span class="quick-btn" data-count="100">100</span>
+        <span class="quick-btn" data-count="200">200</span>
+        <span class="quick-btn" data-count="500">500</span>
+    </div>
+</div>
+
+<!-- Results -->
+<div class="results">
+    <div class="result-header">
+        <div>
+            <h2>地址表</h2>
+            <div class="result-stats" id="stats">
+                <span>范围: <strong id="rangeDisplay">3x: 0 - 19</strong></span>
+                <span>共 <strong id="totalDisplay">20</strong> 个地址</span>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="action-btn" onclick="copyTable()">📋 复制</button>
+            <button class="action-btn" onclick="exportCSV()">📥 CSV</button>
+            <button class="action-btn" onclick="exportJSON()">📥 JSON</button>
+        </div>
+    </div>
+
+    <div class="table-wrap" id="tableWrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>PLC 地址</th>
+                    <th>十进制</th>
+                    <th>十六进制</th>
+                    <th>Modbus 协议地址</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        HMI Toolbox · <a href="https://tianyuwa.github.io/hmi-tools">返回工具包</a> · 免费在线版 · 无需注册
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<script>
+// ─── Mapping ───
+const REG_PREFIX = { '0x': '0', '1x': '1', '3x': '3', '4x': '4' };
+const REG_LABEL = {
+    '0x': '数字量输出 (Coil)',
+    '1x': '数字量输入 (Contact)',
+    '3x': '输入寄存器 (Input Register)',
+    '4x': '保持寄存器 (Holding Register)',
+};
+
+// ─── State ───
+let state = {
+    startAddr: 1,
+    count: 20,
+    regType: '3x',
+    dataFormat: 'INT16',
+};
+
+// ─── DOM refs ───
+const startInput = document.getElementById('startAddr');
+const countInput = document.getElementById('count');
+const regTypeSelect = document.getElementById('regType');
+const dataFormatSelect = document.getElementById('dataFormat');
+const tbody = document.getElementById('tableBody');
+const rangeDisplay = document.getElementById('rangeDisplay');
+const totalDisplay = document.getElementById('totalDisplay');
+
+// ─── Generate ───
+function generate() {
+    const start = parseInt(startInput.value) || 0;
+    const count = parseInt(countInput.value) || 10;
+    const prefix = REG_PREFIX[regTypeSelect.value] || '4';
+    const regType = regTypeSelect.value;
+    const step = (dataFormatSelect.value === 'INT32' || dataFormatSelect.value === 'FLOAT') ? 2 : 1;
+
+    let html = '';
+    for (let i = 0; i < count; i += step) {
+        const addrDec = start + i;
+        const addrHex = '0x' + addrDec.toString(16).toUpperCase().padStart(4, '0');
+        const plcAddr = prefix + ':' + addrDec;
+        // Modbus protocol address (0-based)
+        const protocolAddr = prefix === '0' ? addrDec : addrDec - 1;
+
+        html += `<tr>
+            <td>${i / step + 1}</td>
+            <td class="copy-cell" onclick="copyText('${plcAddr}')">${plcAddr}</td>
+            <td>${addrDec}</td>
+            <td>${addrHex}</td>
+            <td class="copy-cell" onclick="copyText('${protocolAddr}')">${protocolAddr}</td>
+        </tr>`;
+    }
+
+    tbody.innerHTML = html;
+
+    // Stats
+    const endAddr = start + count - 1;
+    rangeDisplay.textContent = `${regType}: ${start} - ${endAddr}`;
+    totalDisplay.textContent = count;
+}
+
+// ─── Copy utilities ───
+function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => showToast(`Copied: ${text}`));
+}
+
+function copyTable() {
+    const prefix = REG_PREFIX[regTypeSelect.value] || '4';
+    const start = parseInt(startInput.value) || 0;
+    const count = parseInt(countInput.value) || 10;
+    const step = (dataFormatSelect.value === 'INT32' || dataFormatSelect.value === 'FLOAT') ? 2 : 1;
+
+    let text = '#\tPLC Address\tDecimal\tHex\tProtocol\n';
+    for (let i = 0; i < count; i += step) {
+        const addrDec = start + i;
+        const addrHex = '0x' + addrDec.toString(16).toUpperCase().padStart(4, '0');
+        const plcAddr = prefix + ':' + addrDec;
+        const protocolAddr = prefix === '0' ? addrDec : addrDec - 1;
+        text += `${i/step+1}\t${plcAddr}\t${addrDec}\t${addrHex}\t${protocolAddr}\n`;
+    }
+    navigator.clipboard.writeText(text).then(() => showToast('Table copied to clipboard'));
+}
+
+function exportCSV() {
+    const prefix = REG_PREFIX[regTypeSelect.value] || '4';
+    const start = parseInt(startInput.value) || 0;
+    const count = parseInt(countInput.value) || 10;
+    const step = (dataFormatSelect.value === 'INT32' || dataFormatSelect.value === 'FLOAT') ? 2 : 1;
+
+    let csv = '#,PLC Address,Decimal,Hex,Protocol Address\n';
+    for (let i = 0; i < count; i += step) {
+        const addrDec = start + i;
+        const addrHex = '0x' + addrDec.toString(16).toUpperCase().padStart(4, '0');
+        const plcAddr = prefix + ':' + addrDec;
+        const protocolAddr = prefix === '0' ? addrDec : addrDec - 1;
+        csv += `${i/step+1},${plcAddr},${addrDec},${addrHex},${protocolAddr}\n`;
+    }
+    download(csv, 'modbus_address_table.csv', 'text/csv');
+}
+
+function exportJSON() {
+    const prefix = REG_PREFIX[regTypeSelect.value] || '4';
+    const start = parseInt(startInput.value) || 0;
+    const count = parseInt(countInput.value) || 10;
+    const step = (dataFormatSelect.value === 'INT32' || dataFormatSelect.value === 'FLOAT') ? 2 : 1;
+
+    const addresses = [];
+    for (let i = 0; i < count; i += step) {
+        const addrDec = start + i;
+        const addrHex = '0x' + addrDec.toString(16).toUpperCase().padStart(4, '0');
+        const plcAddr = prefix + ':' + addrDec;
+        const protocolAddr = prefix === '0' ? addrDec : addrDec - 1;
+        addresses.push({
+            index: i / step + 1,
+            plcAddress: plcAddr,
+            decimal: addrDec,
+            hex: addrHex,
+            protocolAddress: protocolAddr,
+        });
+    }
+    const json = JSON.stringify({
+        registerType: regTypeSelect.value,
+        registerLabel: REG_LABEL[regTypeSelect.value],
+        startAddress: start,
+        count: count,
+        dataFormat: dataFormatSelect.value,
+        addresses: addresses,
+    }, null, 2);
+    download(json, 'modbus_address_table.json', 'application/json');
+}
+
+function download(content, filename, mime) {
+    const blob = new Blob([content], { type: mime });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+function showToast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+// ─── Device presets ───
+document.querySelectorAll('.preset-card').forEach(el => {
+    el.addEventListener('click', () => {
+        document.querySelectorAll('.preset-card').forEach(e => e.classList.remove('active'));
+        el.classList.add('active');
+        const start = parseInt(el.dataset.start);
+        const type = el.dataset.type;
+        if (!isNaN(start)) startInput.value = start;
+        regTypeSelect.value = type;
+        generate();
+    });
+});
+
+// ─── Quick count ───
+document.querySelectorAll('.quick-btn').forEach(el => {
+    el.addEventListener('click', () => {
+        document.querySelectorAll('.quick-btn').forEach(e => e.classList.remove('active'));
+        el.classList.add('active');
+        countInput.value = el.dataset.count;
+        generate();
+    });
+});
+
+// ─── Input change events ───
+[startInput, countInput, regTypeSelect, dataFormatSelect].forEach(el => {
+    el.addEventListener('input', generate);
+    el.addEventListener('change', generate);
+});
+
+// ─── Initial render ───
+generate();
+
+// ─── Keyboard shortcut ───
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 'c' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT') {
+        copyTable();
+    }
+});
+</script>
+</body>
+</html>

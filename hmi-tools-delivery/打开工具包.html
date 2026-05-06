@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HMI 工具箱 - 启动面板</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f1f5f9; padding: 32px 24px; }
+.container { max-width: 900px; margin: 0 auto; }
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 { font-size: 2rem; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+.header p { color: #94a3b8; }
+.grid { display: grid; gap: 20px; }
+.tool-card { background: #1e293b; border: 1px solid rgba(148,163,184,0.1); border-radius: 16px; padding: 24px; display: flex; align-items: flex-start; gap: 20px; transition: border-color 0.2s; }
+.tool-card:hover { border-color: #38bdf8; }
+.tool-icon { font-size: 2.2rem; line-height: 1; min-width: 48px; text-align: center; }
+.tool-info { flex: 1; }
+.tool-info h3 { font-size: 1.1rem; margin-bottom: 4px; }
+.tool-info .desc { color: #94a3b8; font-size: 0.85rem; margin-bottom: 8px; line-height: 1.5; }
+.tool-info .meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 500; }
+.badge-price { background: rgba(52,211,153,0.15); color: #34d399; }
+.badge-type { background: rgba(56,189,248,0.1); color: #38bdf8; }
+.badge-python { background: rgba(255,193,7,0.1); color: #ffc107; }
+.badge-html { background: rgba(239,68,68,0.1); color: #ef4444; }
+.launch-btn { display: inline-block; padding: 6px 18px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; transition: all 0.2s; margin-top: 8px; }
+.launch-btn:hover { opacity: 0.9; transform: scale(1.03); }
+.launch-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.launch-btn.html { background: linear-gradient(135deg, #34d399, #38bdf8); }
+.launch-btn.python { background: linear-gradient(135deg, #ffc107, #f97316); }
+.howto { margin-top: 32px; background: #0a0f1e; border-radius: 12px; padding: 24px; }
+.howto h3 { margin-bottom: 12px; }
+.howto ol { padding-left: 20px; color: #94a3b8; font-size: 0.88rem; line-height: 2; }
+.footer { text-align: center; margin-top: 32px; color: #94a3b8; font-size: 0.8rem; }
+@media (max-width: 600px) { .tool-card { flex-direction: column; align-items: center; text-align: center; } }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+    <h1>🛠️ HMI 工具箱</h1>
+    <p>Qt/QML &amp; Qt 嵌入式 HMI 工程师效率工具 · v1.0</p>
+</div>
+
+<div class="grid">
+    <div class="tool-card">
+        <div class="tool-icon">📊</div>
+        <div class="tool-info">
+            <h3>PLC 变量自动映射表</h3>
+            <div class="desc">读取 PLC 导出文件，自动生成 HMI HMI 标签映射。支持 Siemens / Mitsubishi / Omron</div>
+            <div class="meta">
+                <span class="badge badge-price">¥99</span>
+                <span class="badge badge-python">Python</span>
+                <span class="badge badge-type">映射工具</span>
+            </div>
+            <div>
+                <button class="launch-btn python" onclick="alert('双击 run_example.bat 运行')">▶ 运行示例</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">🔢</div>
+        <div class="tool-info">
+            <h3>Modbus 地址批量计算器</h3>
+            <div class="desc">一键生成偏移地址表，支持 485/TCP，十进制十六进制互转。含台达/西门子/三菱等设备预设</div>
+            <div class="meta">
+                <span class="badge badge-price">¥69</span>
+                <span class="badge badge-html">网页版</span>
+                <span class="badge badge-type">计算工具</span>
+            </div>
+            <div>
+                <button class="launch-btn html" onclick="window.open('02-Modbus地址计算器/modbus_calculator.html', '_blank')">▶ 打开工具</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">🔄</div>
+        <div class="tool-info">
+            <h3>配方数据 Excel ↔ HMI 互转</h3>
+            <div class="desc">配方数据在 Excel 和 HMI HMI 格式之间双向转换，支持批量处理</div>
+            <div class="meta">
+                <span class="badge badge-price">¥129</span>
+                <span class="badge badge-python">Python</span>
+                <span class="badge badge-type">转换工具</span>
+            </div>
+            <div>
+                <button class="launch-btn python" onclick="alert('双击 run_example.bat 运行')">▶ 运行示例</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">🏷️</div>
+        <div class="tool-info">
+            <h3>标签批量导入/导出工具</h3>
+            <div class="desc">从 PLC 工程文件批量提取标签，自动归类、重命名、差分对比</div>
+            <div class="meta">
+                <span class="badge badge-price">¥149</span>
+                <span class="badge badge-python">Python</span>
+                <span class="badge badge-type">管理工具</span>
+            </div>
+            <div>
+                <button class="launch-btn python" onclick="alert('双击 run_example.bat 运行')">▶ 运行示例</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tool-card">
+        <div class="tool-icon">📋</div>
+        <div class="tool-info">
+            <h3>IO 点表自动生成报告</h3>
+            <div class="desc">自动分类 DI/DO/AI/AO，统计地址占用，生成可交付的 Word + PDF + Markdown 专业报告</div>
+            <div class="meta">
+                <span class="badge badge-price">¥79</span>
+                <span class="badge badge-python">Python</span>
+                <span class="badge badge-type">报告工具</span>
+            </div>
+            <div>
+                <button class="launch-btn python" onclick="alert('双击 run_example.bat 运行')">▶ 运行示例</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tool-card" style="border-color: rgba(52,211,153,0.3);">
+        <div class="tool-icon">🧰</div>
+        <div class="tool-info">
+            <h3>全套工具包（推荐）</h3>
+            <div class="desc">以上全部 5 个工具打包，省 40%，终身免费更新 + 优先技术支持</div>
+            <div class="meta">
+                <span class="badge badge-price" style="background:rgba(52,211,153,0.25);color:#34d399;">¥299（原价 ¥526）</span>
+                <span class="badge badge-type">全套</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="howto">
+    <h3>📖 使用说明</h3>
+    <ol>
+        <li><strong>Python 工具</strong>（📊 🔄 🏷️ 📋）：需要安装 <a href="https://www.python.org/downloads/" style="color:#38bdf8;" target="_blank">Python 3.6+</a>，然后 <strong>双击 run_example.bat</strong> 即可运行示例</li>
+        <li><strong>网页工具</strong>（🔢 计算器）：无需任何安装，<strong>双击 modbus_calculator.html</strong> 或用上面按钮打开</li>
+        <li><strong>Word / PDF 报告</strong>：需要安装 <code style="background:#0f172a;padding:1px 6px;border-radius:3px;">pip install python-docx fpdf2</code>，或用 Markdown 报告</li>
+        <li>所有工具的输出文件在同目录的 <strong>output/</strong> 文件夹中</li>
+        <li>遇到问题或需要定制工具，请联系开发者</li>
+    </ol>
+</div>
+
+<div class="footer">
+    HMI Toolbox · https://tianyuwa.github.io/hmi-tools/ · 专为 HMI 工程师打造
+</div>
+</div>
+</body>
+</html>

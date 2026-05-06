@@ -1,0 +1,32 @@
+ラベル名,デバイス,データ型,コメント
+Motor_Start,M0,BIT,モータ起動
+Motor_Stop,M1,BIT,モータ停止
+Motor_Running,Y0,BIT,モータ運転中
+Motor_Fault,Y1,BIT,モータ故障
+Motor_Speed,D100,BIN16,モータ速度 RPM
+Motor_Torque,D102,BIN16,トルク率 %
+Motor_Temp,D200,FLOAT,モータ温度 ℃
+Motor_Current,D204,FLOAT,モータ電流 A
+Pump_Start,M10,BIT,ポンプ起動
+Pump_Running,Y10,BIT,ポンプ運転中
+Pump_Pressure,D300,FLOAT,圧力 MPa
+Pump_FlowRate,D304,FLOAT,流量 L/min
+Pump_Level,D308,FLOAT,液面 mm
+Valve_Open,Y20,BIT,バルブ開
+Valve_Close,Y21,BIT,バルブ閉
+Valve_Position,D400,BIN16,バルブ開度 %
+Temp_Sensor1,D500,FLOAT,温度1 ℃
+Temp_Sensor2,D504,FLOAT,温度2 ℃
+Temp_Sensor3,D508,FLOAT,温度3 ℃
+Press_Sensor1,D600,FLOAT,圧力1 MPa
+Press_Sensor2,D604,FLOAT,圧力2 MPa
+Level_Sensor,D700,FLOAT,液面計 mm
+Conveyor_Speed,D800,BIN16,コンベア速度 m/min
+Conveyor_Run,Y30,BIT,コンベア運転
+Conveyor_Fault,X30,BIT,コンベア故障
+Conveyor_Count,D804,BIN32,製品カウント
+Alarm_Active,Y40,BIT,アラーム出力
+Alarm_Reset,M50,BIT,アラームリセット
+Alarm_Code,D900,BIN32,故障コード
+System_Mode,D1000,BIN16,0=停止 1=手動 2=自動
+System_Status,D1004,BIN32,システム状態

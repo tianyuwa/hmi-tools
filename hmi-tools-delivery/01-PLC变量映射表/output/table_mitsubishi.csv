@@ -1,0 +1,13 @@
+﻿Variable,Address,PLC Type,QML Type,C Type,Group,Comment
+Motor_Start,%M0,BIT,bool,bool,内部存储,Motor Start
+Motor_Stop,%M1,BIT,bool,bool,内部存储,Motor Stop
+Motor_Running,%Y0,BIT,bool,bool,输出继电器,Motor Running
+Motor_Fault,%Y1,BIT,bool,bool,输出继电器,Motor Fault
+Motor_Speed,%D100,BIN16,int,uint16_t,数据寄存器,RPM
+Motor_Torque,%D102,BIN16,int,uint16_t,数据寄存器,Torque %
+Motor_Temp,%D200,FLOAT,real,float,数据寄存器,Temp C
+Pump_Start,%M10,BIT,bool,bool,内部存储,Pump Start
+Pump_Running,%Y10,BIT,bool,bool,输出继电器,Pump Running
+Pump_Pressure,%D300,FLOAT,real,float,数据寄存器,Pressure MPa
+Alarm_Active,%Y40,BIT,bool,bool,输出继电器,Alarm Output
+System_Mode,%D1000,BIN16,int,uint16_t,数据寄存器,0=Stop 1=Auto

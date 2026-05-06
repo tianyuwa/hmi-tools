@@ -1,0 +1,22 @@
+﻿Name,DataType,LogicalAddress,Comment
+Motor_Start,BOOL,I0.0,Motor Start
+Motor_Stop,BOOL,I0.1,Motor Stop
+Motor_Running,BOOL,Q0.0,Running Status
+Motor_Fault,BOOL,Q0.1,Fault Alarm
+Motor_Speed,INT,MW100,RPM
+Motor_Torque,INT,MW102,Torque %
+Motor_Temp,REAL,MD104,Temperature C
+Motor_Current,REAL,MD108,Current A
+Pump_Start,BOOL,I1.0,Pump Start
+Pump_Running,BOOL,Q1.0,Pump Running
+Pump_Pressure,REAL,MD200,Pressure Bar
+Valve_Open,BOOL,Q2.0,Valve Open
+Valve_Close,BOOL,Q2.1,Valve Close
+Valve_Position,INT,MW300,Position 0-100%
+Temp_Sensor1,REAL,MD400,Temp Sensor 1
+Temp_Sensor2,REAL,MD404,Temp Sensor 2
+System_Mode,WORD,MW900,0=Stop 1=Run 2=Auto
+Alarm_Active,BOOL,Q10.0,Alarm Indicator
+Alarm_Code,DWORD,MD800,Fault Code
+Production_Count,DINT,MD1000,Total Count
+Production_Yield,REAL,MD1004,Yield %

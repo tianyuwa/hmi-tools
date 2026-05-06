@@ -1,0 +1,16 @@
+﻿变量名,地址,数据类型,备注,分组,源PLC
+Motor_Start,%CIO100.00,BOOL,Motor Start,DI,Omron
+Motor_Stop,%CIO100.01,BOOL,Motor Stop,DI,Omron
+Motor_Running,%CIO200.00,BOOL,Motor Running,DO,Omron
+Motor_Fault,%CIO200.01,BOOL,Motor Fault,DO,Omron
+Motor_Speed,%W10,INT,Motor RPM,AI,Omron
+Motor_Temp,%D100,REAL,Temp C,AI,Omron
+Pump_Start,%CIO100.02,BOOL,Pump Start,DI,Omron
+Pump_Running,%CIO200.10,BOOL,Pump Running,DO,Omron
+Pump_Pressure,%D200,REAL,Pressure,AI,Omron
+Valve_Open,%CIO200.20,BOOL,Valve Open,DO,Omron
+Valve_Position,%D300,INT,Position %,AO,Omron
+Temp_Sensor1,%D500,REAL,Temp C,AI,Omron
+Alarm_Active,%CIO210.00,BOOL,Alarm,DO,Omron
+Alarm_Code,%D1000,DWORD,Fault Code,Status,Omron
+System_Mode,%H100,WORD,0=Stop 1=Run,Status,Omron

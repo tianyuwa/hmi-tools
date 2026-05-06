@@ -1,0 +1,39 @@
+Name,DataType,LogicalAddress,Comment
+Motor_Start,BOOL,%I0.0,电机启动信号
+Motor_Stop,BOOL,%I0.1,电机停止信号
+Motor_Running,BOOL,%Q0.0,电机运行状态
+Motor_Fault,BOOL,%Q0.1,电机故障报警
+Motor_Speed,INT,%MW100,电机当前转速 RPM
+Motor_Torque,INT,%MW102,电机扭矩百分比
+Motor_Temperature,REAL,%MD104,电机温度 °C
+Motor_Current,REAL,%MD108,电机电流 A
+Pump_Start,BOOL,%I1.0,水泵启动
+Pump_Running,BOOL,%Q1.0,水泵运行状态
+Pump_Pressure,REAL,%MD200,水泵压力 Bar
+Pump_FlowRate,REAL,%MD204,水泵流量 L/min
+Pump_Level,REAL,%MD208,液位高度 mm
+Valve_Open,BOOL,%Q2.0,阀门打开
+Valve_Close,BOOL,%Q2.1,阀门关闭
+Valve_Position,INT,%MW300,阀门开度百分比 0-100
+Valve_Mode,WORD,%MW302,阀门控制模式
+Temperature_Sensor1,REAL,%MD400,温度传感器1 °C
+Temperature_Sensor2,REAL,%MD404,温度传感器2 °C
+Temperature_Sensor3,REAL,%MD408,温度传感器3 °C
+Temperature_Avg,REAL,%MD412,平均温度
+Pressure_Sensor1,REAL,%MD500,压力传感器1 Bar
+Pressure_Sensor2,REAL,%MD504,压力传感器2 Bar
+Level_Sensor,REAL,%MD600,液位传感器 mm
+Conveyor_Speed,INT,%MW700,传送带速度 m/min
+Conveyor_Running,BOOL,%Q5.0,传送带运行
+Conveyor_Fault,BOOL,%I5.0,传送带故障
+Conveyor_Count,DINT,%MD704,产品计数
+Alarm_Active,BOOL,%Q10.0,报警指示
+Alarm_Acknowledge,BOOL,%I10.0,报警确认
+Alarm_Code,DWORD,%MD800,故障代码
+System_Mode,WORD,%MW900,系统运行模式 0=停止 1=手动 2=自动
+System_Status,DWORD,%MD904,系统状态字
+System_Uptime,TIME,%MD908,系统运行时间
+Production_Target,DINT,%MD1000,生产目标数量
+Production_Actual,DINT,%MD1004,实际产量
+Production_Defect,DINT,%MD1008,次品数量
+Production_Yield,REAL,%MD1012,良品率百分比

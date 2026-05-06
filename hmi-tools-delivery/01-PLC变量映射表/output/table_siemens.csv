@@ -1,0 +1,18 @@
+﻿Variable,Address,PLC Type,QML Type,C Type,Group,Comment
+Motor_Start,%I0.0,BOOL,bool,bool,数字量输入,Motor Start
+Motor_Stop,%I0.1,BOOL,bool,bool,数字量输入,Motor Stop
+Motor_Running,%Q0.0,BOOL,bool,bool,数字量输出,Running Status
+Motor_Fault,%Q0.1,BOOL,bool,bool,数字量输出,Fault Alarm
+Motor_Speed,%MW100,INT,int,int16_t,MW,RPM
+Motor_Torque,%MW102,INT,int,int16_t,MW,Torque %
+Motor_Temp,%MD104,REAL,real,float,MD,Temperature C
+Pump_Start,%I1.0,BOOL,bool,bool,数字量输入,Pump Start
+Pump_Running,%Q1.0,BOOL,bool,bool,数字量输出,Pump Running
+Pump_Pressure,%MD200,REAL,real,float,MD,Pressure Bar
+Valve_Open,%Q2.0,BOOL,bool,bool,数字量输出,Valve Open
+Valve_Position,%MW300,INT,int,int16_t,MW,0-100%
+Temp_Sensor1,%MD400,REAL,real,float,MD,Temp C
+Temp_Sensor2,%MD404,REAL,real,float,MD,Temp C
+System_Mode,%MW900,WORD,int,uint16_t,MW,0=Stop 1=Run
+Alarm_Code,%MD800,DWORD,int,uint32_t,MD,Fault Code
+Production_Count,%MD1000,DINT,int,int32_t,MD,Total Count

@@ -1,0 +1,4 @@
+﻿RecipeName,Coolant,Mode,Pressure,Speed,Temp,Time,Comment
+Recipe_001,On,Auto,2.5,1200,180,30,Standard heating profile
+Recipe_002,Off,Manual,3.0,800,220,45,High temp curing
+Recipe_003,On,Auto,1.8,1500,150,20,Fast cooling profile

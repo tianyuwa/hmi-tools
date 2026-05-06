@@ -1,0 +1,17 @@
+﻿变量名,地址,数据类型,备注,分组,源PLC
+Motor_Start,%M0,BOOL,Motor Start,DI,Mitsubishi
+Motor_Stop,%M1,BOOL,Motor Stop,DI,Mitsubishi
+Motor_Running,%Y0,BOOL,Motor Running,DO,Mitsubishi
+Motor_Fault,%Y1,BOOL,Motor Fault,DO,Mitsubishi
+Motor_Speed,%D100,INT,Motor RPM,AI,Mitsubishi
+Motor_Torque,%D102,INT,Torque %,AI,Mitsubishi
+Motor_Temp,%D200,REAL,Temp C,AI,Mitsubishi
+Pump_Start,%M10,BOOL,Pump Start,DI,Mitsubishi
+Pump_Running,%Y10,BOOL,Pump Running,DO,Mitsubishi
+Pump_Pressure,%D300,REAL,Pressure MPa,AI,Mitsubishi
+Valve_Open,%Y20,BOOL,Valve Open,DO,Mitsubishi
+Valve_Pos,%D400,INT,Valve %,AO,Mitsubishi
+Temp_Sensor1,%D500,REAL,Temp C,AI,Mitsubishi
+Conveyor_Speed,%D800,INT,m/min,AI,Mitsubishi
+Alarm_Active,%Y40,BOOL,Alarm,DO,Mitsubishi
+System_Mode,%D1000,INT,0=Stop 1=Manual 2=Auto,Status,Mitsubishi

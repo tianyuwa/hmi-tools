@@ -1,0 +1,10 @@
+﻿Variable,Address,PLC Type,QML Type,C Type,Group,Comment
+Motor_Start,%CIO100.00,BOOL,bool,bool,I/O通道,Motor Start
+Motor_Stop,%CIO100.01,BOOL,bool,bool,I/O通道,Motor Stop
+Motor_Running,%CIO200.00,BOOL,bool,bool,I/O通道,Running
+Motor_Fault,%CIO200.01,BOOL,bool,bool,I/O通道,Fault
+Motor_Speed,%W10,INT,int,int16_t,工作字,RPM
+Motor_Temp,%D100,REAL,real,float,数据寄存器,Temp C
+Pump_Pressure,%D200,REAL,real,float,数据寄存器,Pressure
+Valve_Open,%CIO200.20,BOOL,bool,bool,I/O通道,Valve Open
+System_Mode,%H100,WORD,int,uint16_t,保持字,0=Stop 1=Run

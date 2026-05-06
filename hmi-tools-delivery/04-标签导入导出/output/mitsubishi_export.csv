@@ -1,0 +1,17 @@
+ラベル名,デバイス,データ型,コメント
+Motor_Start,M0,BIT,Motor Start
+Motor_Stop,M1,BIT,Motor Stop
+Motor_Running,Y0,BIT,Motor Running
+Motor_Fault,Y1,BIT,Motor Fault
+Motor_Speed,D100,INT,Motor RPM
+Motor_Torque,D102,INT,Torque %
+Motor_Temp,D200,REAL,Temp C
+Pump_Start,M10,BIT,Pump Start
+Pump_Running,Y10,BIT,Pump Running
+Pump_Pressure,D300,REAL,Pressure MPa
+Valve_Open,Y20,BIT,Valve Open
+Valve_Pos,D400,INT,Valve %
+Temp_Sensor1,D500,REAL,Temp C
+Conveyor_Speed,D800,INT,m/min
+Alarm_Active,Y40,BIT,Alarm
+System_Mode,D1000,INT,0=Stop 1=Manual 2=Auto

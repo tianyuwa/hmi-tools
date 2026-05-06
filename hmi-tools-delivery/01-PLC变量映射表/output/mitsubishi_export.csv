@@ -1,0 +1,13 @@
+LabelName,Device,DataType,Comment
+Motor_Start,M0,BIT,Motor Start
+Motor_Stop,M1,BIT,Motor Stop
+Motor_Running,Y0,BIT,Motor Running
+Motor_Fault,Y1,BIT,Motor Fault
+Motor_Speed,D100,BIN16,RPM
+Motor_Torque,D102,BIN16,Torque %
+Motor_Temp,D200,FLOAT,Temp C
+Pump_Start,M10,BIT,Pump Start
+Pump_Running,Y10,BIT,Pump Running
+Pump_Pressure,D300,FLOAT,Pressure MPa
+Alarm_Active,Y40,BIT,Alarm Output
+System_Mode,D1000,BIN16,0=Stop 1=Auto

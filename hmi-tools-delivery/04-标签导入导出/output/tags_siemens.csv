@@ -1,0 +1,22 @@
+﻿变量名,地址,数据类型,备注,分组,源PLC
+Motor_Start,%I0.0,BOOL,Motor Start,DI,Siemens
+Motor_Stop,%I0.1,BOOL,Motor Stop,DI,Siemens
+Motor_Running,%Q0.0,BOOL,Running Status,DO,Siemens
+Motor_Fault,%Q0.1,BOOL,Fault Alarm,DO,Siemens
+Motor_Speed,%MW100,INT,RPM,AI,Siemens
+Motor_Torque,%MW102,INT,Torque %,AI,Siemens
+Motor_Temp,%MD104,REAL,Temperature C,AI,Siemens
+Motor_Current,%MD108,REAL,Current A,AI,Siemens
+Pump_Start,%I1.0,BOOL,Pump Start,DI,Siemens
+Pump_Running,%Q1.0,BOOL,Pump Running,DO,Siemens
+Pump_Pressure,%MD200,REAL,Pressure Bar,AI,Siemens
+Valve_Open,%Q2.0,BOOL,Valve Open,DO,Siemens
+Valve_Close,%Q2.1,BOOL,Valve Close,DO,Siemens
+Valve_Position,%MW300,INT,Position 0-100%,AO,Siemens
+Temp_Sensor1,%MD400,REAL,Temp Sensor 1,AI,Siemens
+Temp_Sensor2,%MD404,REAL,Temp Sensor 2,AI,Siemens
+System_Mode,%MW900,WORD,0=Stop 1=Run 2=Auto,Status,Siemens
+Alarm_Active,%Q10.0,BOOL,Alarm Indicator,DO,Siemens
+Alarm_Code,%MD800,DWORD,Fault Code,Status,Siemens
+Production_Count,%MD1000,DINT,Total Count,Counter,Siemens
+Production_Yield,%MD1004,REAL,Yield %,Counter,Siemens
