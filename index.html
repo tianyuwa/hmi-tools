@@ -1,0 +1,779 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMI 工具箱 - 嵌入式 HMI 工程师的效率利器</title>
+    <meta name="description" content="专为 Qt/QML 和 Qt HMI 工程师打造的效率工具集：PLC变量自动映射、Modbus地址批量计算、配方数据互转、标签批量导入导出。节省你的每一分钟。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --accent: #38bdf8;
+            --accent2: #818cf8;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --green: #34d399;
+            --orange: #fb923c;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 640px;
+            margin: 0 auto 32px;
+        }
+        .tagline {
+            display: inline-block;
+            background: rgba(56,189,248,0.1);
+            border: 1px solid rgba(56,189,248,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .tagline-free {
+            background: rgba(52,211,153,0.1) !important;
+            border-color: rgba(52,211,153,0.3) !important;
+            color: var(--green) !important;
+        }
+
+        .products { padding: 60px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 48px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid rgba(148,163,184,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            min-height: 40px;
+        }
+        .card .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-top: auto;
+        }
+        .card .price span {
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 400;
+        }
+        .card .features {
+            list-style: none;
+            margin: 16px 0;
+            font-size: 0.85rem;
+        }
+        .card .features li {
+            padding: 4px 0;
+            color: var(--muted);
+        }
+        .card .features li::before {
+            content: "\2713 ";
+            color: var(--green);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #0f172a;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .btn-free {
+            background: linear-gradient(135deg, var(--green), var(--accent));
+            color: #0f172a;
+        }
+        .btn-free:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+        .btn-outline:hover {
+            background: rgba(56,189,248,0.1);
+        }
+
+        /* ═══ Demo Section ═══ */
+        .demo { padding: 60px 0; background: #0a0f1e; }
+        .demo-card {
+            background: var(--card);
+            border: 1px solid rgba(148,163,184,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            transition: border-color 0.2s;
+        }
+        .demo-card:hover { border-color: var(--accent); }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .demo-header h3 { font-size: 1.1rem; }
+        .demo-badge {
+            background: rgba(56,189,248,0.1);
+            border: 1px solid rgba(56,189,248,0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            color: var(--accent);
+        }
+        .demo-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+        .demo-flow .arrow {
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-align: center;
+        }
+        .demo-box {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid rgba(148,163,184,0.15);
+        }
+        .demo-box .box-label {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .demo-box pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: #e2e8f0;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.5;
+        }
+        .demo-box pre .hl { color: var(--green); }
+        .demo-box pre .hl2 { color: var(--accent); }
+        .demo-box pre .hl3 { color: var(--orange); }
+
+        /* ═══ Testimonials ═══ */
+        .testimonials { padding: 60px 0; }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: var(--card);
+            border: 1px solid rgba(148,163,184,0.1);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: "\201C";
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: absolute;
+            top: 8px;
+            left: 16px;
+        }
+        .testimonial-card p {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            padding-top: 8px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #0f172a;
+        }
+        .testimonial-author .name { font-weight: 600; font-size: 0.85rem; }
+        .testimonial-author .role { color: var(--muted); font-size: 0.75rem; }
+
+        /* ═══ Free Tool Section ═══ */
+        .free-tool {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #0f172a 0%, rgba(52,211,153,0.05) 50%, #0f172a 100%);
+            border-top: 1px solid rgba(52,211,153,0.15);
+            border-bottom: 1px solid rgba(52,211,153,0.15);
+        }
+        .free-tool .container {
+            text-align: center;
+        }
+        .free-tool .price-free {
+            display: inline-block;
+            background: rgba(52,211,153,0.15);
+            border: 1px solid rgba(52,211,153,0.3);
+            color: var(--green);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .free-tool h2 { margin-bottom: 12px; }
+        .free-tool p { color: var(--muted); max-width: 600px; margin: 0 auto 32px; }
+
+        .how-it-works { padding: 60px 0; background: #0a0f1e; }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .step {
+            text-align: center;
+        }
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+        .step h4 { margin-bottom: 8px; }
+        .step p { color: var(--muted); font-size: 0.9rem; }
+
+        .faq { padding: 60px 0; }
+        .faq-item {
+            border-bottom: 1px solid rgba(148,163,184,0.1);
+            padding: 20px 0;
+        }
+        .faq-item h4 {
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .faq-item h4:hover { color: var(--accent); }
+        .faq-item p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            display: none;
+        }
+        .faq-item.active p { display: block; }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(148,163,184,0.1);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding: 60px 0 40px; }
+            .grid { grid-template-columns: 1fr; }
+            .demo-flow { grid-template-columns: 1fr; }
+            .demo-flow .arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="container">
+        <span class="tagline">HMI 工程师专属</span>
+        <h1>让 HMI 开发效率翻倍</h1>
+        <p>专为 HMI 工作流设计的效率工具 —— 变量映射、地址计算、配方互转、标签管理，一条龙搞定。</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="#products" class="btn btn-primary" style="width:auto;padding:14px 48px;">查看工具</a>
+            <a href="#free-tool" class="btn btn-free" style="width:auto;padding:14px 48px;">免费工具</a>
+        </div>
+    </div>
+</section>
+
+<section class="products" id="products">
+    <div class="container">
+        <h2 class="section-title">精选工具</h2>
+        <p class="section-sub">一次购买，永久使用。付款后自动发送下载链接。</p>
+        <div class="grid">
+            <div class="card">
+                <span class="card-icon">📊</span>
+                <h3>PLC 变量自动映射表</h3>
+                <p>输入 PLC 变量名，自动生成 HMI 工程中的标签地址映射表。</p>
+                <ul class="features">
+                    <li>支持 Siemens / Mitsubishi / Omron 等 20+ PLC</li>
+                    <li>自动生成 Qt QML 兼容格式</li>
+                    <li>支持 Qt QML property binding 模板</li>
+                    <li>自动偏移 + 数据类型校验</li>
+                    <li>一键导出 Excel / CSV / JSON / PDF</li>
+                </ul>
+                <div class="price">¥99 <span>/ 永久</span></div>
+                <a href="#demo" class="btn btn-outline" style="margin-top:8px;">查看演示</a>
+                <a href="#" class="btn btn-primary" style="margin-top:8px;">前往面包多购买</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">🔢</span>
+                <h3>Modbus 地址批量计算器</h3>
+                <p>输入起始地址，一键生成全部偏移地址表，支持 Qt/QML 数据源绑定。</p>
+                <ul class="features">
+                    <li>485 / 233 / TCP 地址全支持</li>
+                    <li>十进制 十六进制互转</li>
+                    <li>批量生成 D/I/AI/AQ 地址</li>
+                    <li>可输出 Qt/QML Data Source 配置格式</li>
+                    <li>含台达/西门子等设备预设</li>
+                </ul>
+                <div class="price">免费 <span>/ 在线版</span></div>
+                <a href="#free-tool" class="btn btn-free" style="margin-top:8px;">免费使用</a>
+                <a href="#" class="btn btn-outline" style="margin-top:8px;">高级版 ¥69</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">🔄</span>
+                <h3>配方数据 Excel  HMI 互转</h3>
+                <p>配方数据在 Excel 和 HMI HMI 格式之间双向转换。</p>
+                <ul class="features">
+                    <li>支持 HMI 配方数据格式导入导出</li>
+                    <li>支持 Qt QML 模型数据格式</li>
+                    <li>批量处理数十个配方</li>
+                    <li>数据校验 + 异常标记</li>
+                    <li>可视化操作界面</li>
+                </ul>
+                <div class="price">¥129 <span>/ 永久</span></div>
+                <a href="#demo" class="btn btn-outline" style="margin-top:8px;">查看演示</a>
+                <a href="#" class="btn btn-primary" style="margin-top:8px;">前往面包多购买</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">🏷️</span>
+                <h3>标签批量导入/导出工具</h3>
+                <p>从 PLC 工程文件批量提取标签，自动导入 HMI HMI 工程。</p>
+                <ul class="features">
+                    <li>原生解析 Siemens TIA / 三菱 GXW / Omron CX-P</li>
+                    <li>自动品牌检测 + 地址归一化</li>
+                    <li>Qt QML + C Header 输出</li>
+                    <li>批量重命名 / 归类 / 差分对比</li>
+                    <li>支持导出回原生 PLC 格式</li>
+                </ul>
+                <div class="price">¥149 <span>/ 永久</span></div>
+                <a href="#demo" class="btn btn-outline" style="margin-top:8px;">查看演示</a>
+                <a href="#" class="btn btn-primary" style="margin-top:8px;">前往面包多购买</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">📋</span>
+                <h3>IO 点表自动生成报告</h3>
+                <p>从工程文件自动提取 IO 点表，生成专业交付文档。</p>
+                <ul class="features">
+                    <li>DI / DO / AI / AO 自动分类</li>
+                    <li>地址占用统计 + 余量分析</li>
+                    <li>可导出 Word / PDF 交付文档</li>
+                    <li>含接线图模板</li>
+                </ul>
+                <div class="price">¥79 <span>/ 永久</span></div>
+                <a href="#demo" class="btn btn-outline" style="margin-top:8px;">查看演示</a>
+                <a href="#" class="btn btn-primary" style="margin-top:8px;">前往面包多购买</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">🧰</span>
+                <h3>全套工具包（推荐）</h3>
+                <p>以上全部工具打包，省 40%，一步到位。</p>
+                <ul class="features">
+                    <li>全部 6 个工具永久使用</li>
+                    <li>终身免费更新</li>
+                    <li>优先技术支持</li>
+                    <li>新工具上线自动获取</li>
+                </ul>
+                <div class="price">¥299 <span>/ 永久（原价 ¥455）</span></div>
+                <a href="#" class="btn btn-primary" style="margin-top:16px;">前往面包多购买</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     实际效果预览 (Demo / Screenshots)
+     ════════════════════════════════════════════════════════════ -->
+
+<section class="demo" id="demo">
+    <div class="container">
+        <h2 class="section-title">实际效果预览</h2>
+        <p class="section-sub">从输入到输出，所见即所得。每个工具下面都有真实运行效果。</p>
+
+        <!-- Tool 1: PLC Mapping -->
+        <div class="demo-card">
+            <div class="demo-header">
+                <span style="font-size:1.5rem;">📊</span>
+                <h3>PLC 变量自动映射表</h3>
+                <span class="demo-badge">输入 输出</span>
+            </div>
+            <div class="demo-flow">
+                <div class="demo-box">
+                    <div class="box-label">输入: Siemens TIA Portal 导出</div>
+                    <pre>Name         DataType  Address      Comment
+<span class="hl">Motor_Start</span>  BOOL      I0.0         Motor Start
+<span class="hl">Motor_Stop</span>   BOOL      I0.1         Motor Stop
+<span class="hl">Motor_Speed</span>  INT       MW100        RPM
+<span class="hl">Motor_Temp</span>   REAL      MD104        Temp C
+<span class="hl">Pump_Pressure</span> REAL      MD200        Pressure Bar
+<span class="hl">Valve_Pos</span>    INT       MW300        0-100%</pre>
+                </div>
+                <div class="arrow">→</div>
+                <div class="demo-box">
+                    <div class="box-label">输出: Qt QML Kernel</div>
+                    <pre>{
+  "ModuleName": "PlcHmiMapping",
+  "Groups": [{
+    "Name": "Digital Output",
+    "States": [
+      { "Name": "Motor_Start",
+        "Type": "bool",
+        "DefaultValue": "0" },
+      { "Name": "Pump_Pressure",
+        "Type": "real",
+        "DefaultValue": "0.0" }
+    ]
+  }]
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool 2: Modbus Calculator -->
+        <div class="demo-card">
+            <div class="demo-header">
+                <span style="font-size:1.5rem;">🔢</span>
+                <h3>Modbus 地址批量计算器</h3>
+                <span class="demo-badge">在线免费</span>
+            </div>
+            <div class="demo-flow">
+                <div class="demo-box">
+                    <div class="box-label">输入: 起始地址 + 数量</div>
+                    <pre>Protocol: <span class="hl">Modbus TCP</span>
+Device:   <span class="hl2">Delta DVP-SV</span>
+Start:    <span class="hl">400001</span>
+Count:    <span class="hl">10</span></pre>
+                </div>
+                <div class="arrow">→</div>
+                <div class="demo-box">
+                    <div class="box-label">输出: 自动偏移地址表</div>
+                    <pre> #  Address    Dec    Hex    Type
+ 1  <span class="hl">400001</span>    1      0x01   Holding
+ 2  <span class="hl">400002</span>    2      0x02   Holding
+ 3  <span class="hl">400003</span>    3      0x03   Holding
+ 4  <span class="hl">400004</span>    4      0x04   Holding
+ 5  <span class="hl">400005</span>    5      0x05   Holding
+...
+10  <span class="hl">400010</span>   10      0x0A   Holding</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool 3: Tag Manager -->
+        <div class="demo-card">
+            <div class="demo-header">
+                <span style="font-size:1.5rem;">🏷️</span>
+                <h3>标签批量导入/导出工具</h3>
+                <span class="demo-badge">品牌自动检测</span>
+            </div>
+            <div class="demo-flow">
+                <div class="demo-box">
+                    <div class="box-label">输入: 三菱 GX Works (日文)</div>
+                    <pre><span class="hl3">[自动检测: Mitsubishi GX Works]</span>
+LabelName       Device  DataType  Comment
+Motor_Start     <span class="hl">M0</span>     BIT       Motor Start
+Motor_Running   <span class="hl">Y0</span>     BIT       Motor Running
+Motor_Speed     <span class="hl">D100</span>   BIN16     RPM
+Pump_Pressure   <span class="hl">D300</span>   FLOAT     Pressure
+Valve_Open      <span class="hl">Y20</span>    BIT       Valve Open</pre>
+                </div>
+                <div class="arrow">→</div>
+                <div class="demo-box">
+                    <div class="box-label">输出: Qt/QML Kernel + QML + C Header</div>
+                    <pre>// Qt QML binding
+property bool <span class="hl">Motor_Start</span>: 0
+property int  <span class="hl">Motor_Speed</span>: 0
+property real <span class="hl">Pump_Pressure</span>: 0.0
+
+// C Header
+extern bool PLC_Motor_Start;
+extern int16_t PLC_Motor_Speed;
+extern float PLC_Pump_Pressure;</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool 4: IO Report -->
+        <div class="demo-card">
+            <div class="demo-header">
+                <span style="font-size:1.5rem;">📋</span>
+                <h3>IO 点表自动生成报告</h3>
+                <span class="demo-badge">Word + PDF 交付</span>
+            </div>
+            <div class="demo-flow">
+                <div class="demo-box">
+                    <div class="box-label">输入: IO 标签文件</div>
+                    <pre>Name        Address  Type  Comment
+E-Stop      <span class="hl">I0.0</span>    BOOL  Emergency Stop
+Start       <span class="hl">I0.1</span>    BOOL  Start Button
+Motor_Run   <span class="hl">Q0.0</span>    BOOL  Motor Running
+Motor_Fault <span class="hl">Q0.1</span>    BOOL  Motor Fault
+Temp_Sensor <span class="hl">AIW0</span>    INT   Temp 0-200C
+Pressure    <span class="hl">AIW2</span>    INT   Pressure 0-16bar
+Freq_Set    <span class="hl">AQW0</span>    INT   Freq 0-50Hz</pre>
+                </div>
+                <div class="arrow">→</div>
+                <div class="demo-box">
+                    <div class="box-label">输出: Word 报告 + PDF + Markdown</div>
+                    <pre>=== Report Structure ===
+[Cover]   IO Point Table Report
+[1]       Statistics Overview
+          DI: 4  |  DO: 3  |  AI: 2  |  AO: 1
+[2]       IO Detail Lists
+[3]       Address Allocation
+[4]       Slot Distribution
+[5]       Wiring Reference
+
+Files generated:
+  IOReport.docx  (40 KB)
+  IOReport.pdf   (128 KB)
+  IOReport.md    (3 KB)</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     用户评价 (Testimonials)
+     ════════════════════════════════════════════════════════════ -->
+
+<section class="testimonials" id="reviews">
+    <div class="container">
+        <h2 class="section-title">用户怎么说</h2>
+        <p class="section-sub">来自真实工程师的使用反馈</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>用了全套工具包三个月，变量映射再也没出过错。以前手动配 Qt/QML 标签，一个项目要两天，现在两小时搞定。</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">陈</div>
+                    <div>
+                        <div class="name">陈工</div>
+                        <div class="role">某自动化集成商 · PLC 工程师</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>Modbus 计算器救了大命，我们项目 200 多个 Modbus 地址，逐个人工算的话肯定要出 bug。一键生成，零错误。</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">王</div>
+                    <div>
+                        <div class="name">王磊</div>
+                        <div class="role">嵌入式 HMI 开发 · 5 年经验</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>IO 点表导出 Word 文档直接发给甲方，对方说"专业"。之前都是手搓表格，现在一键生成，还能出 PDF。</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">李</div>
+                    <div>
+                        <div class="name">李明</div>
+                        <div class="role">自动化项目负责人</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     免费 Modbus 计算器
+     ════════════════════════════════════════════════════════════ -->
+
+<section class="free-tool" id="free-tool">
+    <div class="container">
+        <div class="price-free">完全免费 · 在线使用</div>
+        <h2>Modbus 地址批量计算器</h2>
+        <p>输入起始地址和数量，一键生成完整偏移地址表。支持 485、TCP，十进制十六进制的互转。含台达、西门子、三菱等设备预设，无需安装，浏览器打开即用。</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="./modbus.html"
+               class="btn btn-free" style="width:auto;padding:14px 48px;"
+               target="_blank">打开免费工具</a>
+            <a href="#products" class="btn btn-outline" style="width:auto;padding:14px 32px;">查看全部工具</a>
+        </div>
+        <div style="margin-top:40px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:0.85rem;color:var(--muted);">
+            <span>浏览器运行，无需安装</span>
+            <span>无限制免费使用</span>
+            <span>无需注册登录</span>
+            <span>项目实测验证</span>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">三步上手</h2>
+        <p class="section-sub">从付完款到用上工具，不到 5 分钟。</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h4>前往面包多下单</h4>
+                <p>点击购买按钮跳转面包多，支付宝/微信支付</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h4>自动获取下载</h4>
+                <p>付款后面包多自动发送下载链接到邮箱</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h4>开箱即用</h4>
+                <p>解压即用，附详细使用教程视频</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq">
+    <div class="container">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-sub" style="margin-bottom:32px;">你想知道的都在这里</p>
+        <div class="faq-item active">
+            <h4>这些工具支持哪些 HMI 平台？</h4>
+            <p>深度适配 <strong>Qt/QML</strong>（Qt/QML Studio / Qt/QML Maps / State Manager 数据绑定）和 <strong>Qt</strong>（Qt Quick / QML / Widgets）工作流。同时也兼容威纶通、昆仑通态、西门子 WinCC、三菱 GOT、Proface 等传统 HMI。输出格式可灵活配置。</p>
+        </div>
+        <div class="faq-item">
+            <h4>购买前能看到工具长什么样吗？</h4>
+            <p>可以。本页面上方有 <strong>实际效果预览</strong> 板块，展示了每个工具的输入和输出示例。免费 Modbus 计算器可以直接在线体验。</p>
+        </div>
+        <div class="faq-item">
+            <h4>Modbus 计算器免费版和付费版有什么区别？</h4>
+            <p>免费版支持基本地址计算和转换。高级版（¥69）增加了批量文件导出、Qt/QML Data Source 配置输出、自定义模板、设备预设管理等功能。</p>
+        </div>
+        <div class="faq-item">
+            <h4>购买后能退款吗？</h4>
+            <p>数字产品一经发送，不支持退款。购买前可试用免费工具了解产品风格和品质。</p>
+        </div>
+        <div class="faq-item">
+            <h4>会更新吗？要不要额外付费？</h4>
+            <p>全部工具永久使用，终身免费更新。工具包用户享受优先新功能推送。</p>
+        </div>
+        <div class="faq-item">
+            <h4>看不懂文档怎么办？</h4>
+            <p>每个工具都附带详细视频教程 + PDF 文档。有疑问可直接联系微信客服。</p>
+        </div>
+        <div class="faq-item">
+            <h4>可以定制专属工具吗？</h4>
+            <p>可以。请联系客服提供需求，根据复杂度定价。工具包用户享 9 折定制优惠。</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 HMI 工具箱 · 专为嵌入式 HMI 工程师打造 · <a href="mailto:hi@hmitools.com">联系客服</a></p>
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-item h4').forEach(el => {
+        el.addEventListener('click', () => {
+            el.parentElement.classList.toggle('active');
+        });
+    });
+    document.querySelectorAll('.btn-primary[href="#"]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('请前往面包多购买此工具');
+        });
+    });
+</script>
+</body>
+</html>
+
